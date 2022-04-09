@@ -9,7 +9,7 @@ class ArticlePost(models.Model):
     body = models.TextField()
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
-
+    status = models.IntegerField(default=1)
     class Meta:
         ordering = ('-created',)
     
