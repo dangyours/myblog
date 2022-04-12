@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import markdown
 from django.shortcuts import redirect
 from django.urls import reverse
-
+from userprofile.models import BlogUser
 # Create your views here.
 
 def index(request):
@@ -19,6 +19,10 @@ def articleDetail(request,aid=0):
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         ])
+    
+    uob = BlogUser.objects.get(id=aob.author)
+    aob.articleAuthor = uob.name
+
     context = {"article":aob}
     return render(request,"article/detail.html",context)
 
